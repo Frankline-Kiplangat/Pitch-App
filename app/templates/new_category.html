@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% import 'boostrap/wtf.html' as wtf %}
+
+{% block styles %}
+ {{ super() }}
+ {% endblock %}
+
+
+{% block conntent %}
+<title> {{ title }} </title>
+
+<div class= "container fluid">
+<div class=" col-md-4">
+{{wtf.quick_form(category_form)}}
+</div>
+{% endblock %}
+
