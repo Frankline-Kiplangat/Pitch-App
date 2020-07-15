@@ -3,7 +3,7 @@ import os
 class Config:
 
     SECRET_KEY = os.environ.get('SECRET_KEY')
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://frank:1234@localhost/pitch'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:1234@localhost/pitches'
     UPLOADED_PHOTOS_DEST ='app/static/photos'
     
     #  email configurations
@@ -13,7 +13,7 @@ class Config:
     MAIL_USERNAME = os.environ.get("MAIL_USERNAME")
     MAIL_PASSWORD = os.environ.get("MAIL_PASSWORD")
     
-    SUBJECT_PREFIX = 'pitche'
+    SUBJECT_PREFIX = 'pitch'
     SENDER_EMAIL = 'kipfrankline@gmail.com'
     
 # simple mde  configurations
@@ -29,10 +29,10 @@ class ProdConfig(Config):
     pass
 
 class TestConfig(Config):
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://frank:1234@localhost/pitch_test'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:1234@localhost/pitch_test'
 
 class DevConfig(Config):
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://frank:1234@localhost/pitche'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:1234@localhost/pitches'
     DEBUG = True
 
 config_options = {

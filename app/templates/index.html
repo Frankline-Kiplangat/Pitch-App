@@ -7,11 +7,10 @@
 {% block content %}
 <div>
 <h3 class="text-right"><a class="btn btn-primary" href="/add/category">Add Category</a></h3>
-{{ macro.displayCategoryList(categories) }}
+    {{ macro.displayCategoryList(category) }}
 </div>
 
-{% endblock %}
-{% macro displayPitches (pitch_list) %}
+{{ macro.displayPitches(pitch_list) }}
     <div class="col-md-4">
     <h3> {{ pitches.pitches }} </h3>
     </div>
@@ -19,6 +18,4 @@
     <p> Posted On: {{ pitches.date_posted.strftime("%m/%d/%Y, %H:%M")}}
         <a href="/pitch/{{pitches.id}}"><h2>Comment</h2></a>
     </div>
-    {% endfor %}
-    {% endmacro %}
-
+{% endblock %}

@@ -1,0 +1,22 @@
+ {% extends 'base.html' %}
+ {% import 'macros.html' as macro%}
+
+ {% block content %}
+ <div>
+{% block content %}
+<div class="col-md-4">
+<h3>{{categories.name}}</h3>
+<a class="btn btn-primary" href="/category/new_pitch/{{categories.id}}">Post a Pitch</a>
+</div>
+
+{% if pitches %}
+    <div class="col-sm-10 col-md-8">
+    {{ macro.displayPitches(pitches)}}
+    </div>
+    {% else %}
+    <div>
+    <h4>No results found</h4>
+    </div>
+  {% endif %}
+
+{% endblock %}
