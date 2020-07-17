@@ -7,7 +7,6 @@ class PitchTest(unittest.TestCase):
     Test class to test the behaviour of the Pitch
     """
     def setUp(self):
-        return super().setUp()(self)
     
         """
         Set up method that will run before every Test

@@ -42,7 +42,6 @@ class Pitch(db.Model):
 
 
     def save_pitch(self):
-        ''' Save the pitches '''
         db.session.add(self)
         db.session.commit()
 
@@ -56,7 +55,6 @@ class Pitch(db.Model):
         return pitches  
      
 class Votes(db.Model):
-    '''class to model votes '''
     __tablename__='votes'
 
     id = db.Column(db. Integer, primary_key=True)
@@ -74,8 +72,6 @@ class Votes(db.Model):
         return votes
     
 class Comments(db.Model):
-    '''User comment model for each pitch '''
-
     __tablename__ = 'comments'
 
 #adding columns
@@ -88,9 +84,6 @@ class Comments(db.Model):
 
 
     def save_comment(self):
-        '''
-        Save the Comments/comments per pitch
-        '''
         db.session.add(self)
         db.session.commit()
 

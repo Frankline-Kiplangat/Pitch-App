@@ -5,16 +5,17 @@ from flask_login import login_required, current_user
 from .forms import PitchForm, CommentForm, UpdateProfile, CategoryForm
 from .. import db, photos
 
-# Landing page categories
+#Landing page sections
 
 @main.route ('/')
 def index():
-    """Function that returns index page and data
+    """
+    Function that returns index page and data
     """
     category = PitchCategory.get_categories()
     return render_template('index.html', categories = category)
 
-@main.route('/category/new_pitch/<int:id>', methods= ['GET', 'POST'])
+@main.route('/category/new-pitch/<int:id>', methods= ['GET', 'POST'])
 @login_required
 def new_pitch(id):
     """
@@ -30,6 +31,9 @@ def new_pitch(id):
         pitch = form.pitch.data
         new_pitch = Pitch(pitch = pitch, category_id = category.id, user_id= current_user.id)
         new_pitch.save_pitch()
+        
+        db.session.add(new_pitch)
+        db.session.commiit()
         return(url_for('.category', id= category.id))
     
     return render_template('new_pitch.html', pitch_form = form, category = category)
@@ -42,11 +46,10 @@ def category(id):
         
     pitches = Pitch.get_pitches(id)
     
-    return render_template ('categories.html', pitches = pitches, category= category)
+    return render_template ('category.html', pitches = pitches, category= category)
 
 
 @main.route('/add/category', methods = ['GET', 'POST'])
-@login_required
 def new_category():
     form = CategoryForm()
     
@@ -54,9 +57,12 @@ def new_category():
         name = form.name.data
         new_category = PitchCategory(name=name)
         new_category.save_category()
+        
+        db.session.add(new_category)
+        db.session.commit()
         return redirect(url_for('.index'))
-    
-    return render_template('new_category.html', category_form = form)
+    title = 'New Category'   
+    return render_template('new_category.html', category_form = form, title = title)
  
 @main.route('/view_pitch/<int:id>', methods = ['GET', 'POST'])
 @login_required
@@ -64,12 +70,14 @@ def view_pitch(id):
     """
     Function that returns a single pitch
     """
+    print(id)
     pitches = Pitch.query.get(id)
     if pitches is None:
         abort(404)
            
     comment = Comments.get_comments(id)
-    return render_template('view_pitch.html', pitches= pitches, comment = comment, category_= id)
+    title = 'View Pitch'
+    return render_template('view_pitch.html', pitches= pitches, comment = comment, category_= id, title= title)
 
 @main.route('/write_comment/<int:id>', methods=['GET', 'POST'])
 @login_required
@@ -86,6 +94,9 @@ def post_comment(id):
         opinion = form.opinion.data
         new_comment = Comments(opinion=opinion, user_id=current_user.id, pitches_id=pitches.id)
         new_comment.save_comment()
+        
+        db.session.add(new_comment)
+        db.session.commit()
         return redirect(url_for('.view_pitch', id=pitches.id))
 
     return render_template('post_comment.html', comment_form=form, title=title)
@@ -123,6 +134,7 @@ def update_pic(uname):
         filename = photos.save(request.files['photo'])
         path = f'photos/{filename}'
         user.profile_pic_path = path
+        db.session.add(user)
         db.session.commit()
     return redirect(url_for('main.profile',uname=uname))
 

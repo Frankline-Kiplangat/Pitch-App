@@ -1,21 +1,23 @@
 {% extends 'base.html'%}
-{% import 'macros.html' as macro %}
+{% import 'macros.html' as macro%}
 
 {% block styles%}
     {{ super() }}
 {% endblock %}
 {% block content %}
 <div>
-<h3 class="text-right"><a class="btn btn-primary" href="/add/category">Add Category</a></h3>
-    {{ macro.displayCategoryList(category) }}
+<h3 class="text-left"><a class="btn btn-primary" href="/add/category"><span class= "glyphicon glyphicon-plus"></span> Add Category </a></h3>
+    {{ macro.displayCategoryList(categories) }}
 </div>
+{% endblock %}
 
-{{ macro.displayPitches(pitch_list) }}
+{% macro displayPitches(pitch_list) %}
     <div class="col-md-4">
-    <h3> {{ pitches.pitches }} </h3>
+    <h1> {{ pitches.pitch }} </h1>
     </div>
     <div class="grid-container">
-    <p> Posted On: {{ pitches.date_posted.strftime("%m/%d/%Y, %H:%M")}}
-        <a href="/pitch/{{pitches.id}}"><h2>Comment</h2></a>
+    <p> Posted On: {{ pitches.date_posted.strftime("%m/%d/%Y, %H:%M")}}</p>
+    <a href="/pitch/{{pitches.id}}"><h2>Comment</h2></a>
     </div>
-{% endblock %}
+   
+{% endmacro %}

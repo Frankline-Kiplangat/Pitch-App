@@ -5,7 +5,6 @@
   {{ super() }}
 {%endblock%}
 
- <!-- content-->
 {% block content %}
 <div class="container-fluid">
  <p><a class="btn btn-primary" href="{{url_for('.new_pitch',id=pitches.category_id)}}">Post a Pitch</a></p>
@@ -14,8 +13,8 @@
  </div>
 
 <div class="col-md-6">
-        <button type="button" class="btn btn-primary"><a  class="btn btn-round" href="{{url_for('.upvote',id=pitches.id)}}">Upvote<span class="glyphicon glyphicon-thumbs-up"></span></a></button>
-        <button type="button" class="btn btn-primary"><a  class="btn btn-round" href="{{url_for('.downvote',id=pitches.id)}}">Downvote<span class="glyphicon glyphicon-thumbs-up"></span></a></button>
+        <button type="button" class="btn btn-primary"><a  class="btn btn-round" href="{{url_for('.upvote',id=pitches.id)}}">Upvote<span class="glyphicon glyphicon-upload"></span></a></button>
+        <button type="button" class="btn btn-primary"><a  class="btn btn-round" href="{{url_for('.downvote',id=pitches.id)}}">Downvote<span class="glyphicon glyphicon-download"></span></a></button>
         
 </div>
 
@@ -25,7 +24,7 @@
          {{ macro.displaySpecificPitch(comment)}}
          <br>
          {%else%}
-         <h3 class="text-center" style="color:rbg(255,255,255);">No comments found </h3>
+         <h3 class="text-center" style="blue">No comments found </h3>
          {% endif %}
         </div>
 

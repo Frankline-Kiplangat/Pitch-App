@@ -27,12 +27,14 @@ def logout():
     flash('You have been successfully logged out')
     return redirect(url_for("main.index"))
 
-@auth.route('/register',methods = ["GET","POST"])
+@auth.route('templates/auth/register',methods = ["GET","POST"])
 def register():
     form = RegistrationForm()
     if form.validate_on_submit():
         user = User(email = form.email.data, username = form.username.data,password = form.password.data)
-        user.save_user()
+        user.save_user()       
+        db.session.add(user)
+        db.session.commit()
 
         mail_message("Welcome to Pitch App","email/welcome_user",user.email,user=user)
         return redirect(url_for('auth.login'))

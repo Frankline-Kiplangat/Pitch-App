@@ -1,7 +1,6 @@
 from flask_wtf import FlaskForm 
 from wtforms import StringField, TextAreaField, SubmitField, ValidationError
 from wtforms.validators import Required, Email
-from ..models import User,Comments,Pitch
 
 class UpdateProfile (FlaskForm):
     """
@@ -10,7 +9,7 @@ class UpdateProfile (FlaskForm):
     bio = TextAreaField ('Write something about you...', validators = [Required()])
     submit = SubmitField ('Submit')
 
-# Class to create a wtf form for creating a pitch  
+# Class for creating a pitch  
 class PitchForm(FlaskForm):
     pitch = TextAreaField('Pitch',validators = [Required()])
     submit = SubmitField ('Submit')
@@ -20,8 +19,8 @@ class CommentForm(FlaskForm):
     submit = SubmitField('Submit')  
     
 class CategoryForm(FlaskForm):
-     name = StringField ('Category name', validators = [Required()])
-     submit = SubmitField('Post')
+     name = StringField ('Name', validators = [Required()])
+     submit = SubmitField('Add')
 
 
     

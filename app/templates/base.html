@@ -4,14 +4,26 @@
 {%block styles %}
 
   {{super()}}
-  <!--Importing the simple mde css and js files  -->
   {{ simplemde.css}}
   {{ simplemde.js }}
 
 {% endblock %}
 
-<!-- Navbar block  -->
+
 {% block navbar %}
     {% include 'navbar.html' %}
-    <title> One Minute Pitch</title>
 {% endblock %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+
+        {% block content %}
+
+        {% endblock%}
+    </body>
+</html>
