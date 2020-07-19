@@ -13,6 +13,8 @@ As a user, you can can do the following with this App
 * View the pitches you have created in your profile page.
 * Submit a pitch in any category.
 * View the different categories.
+# Screenshot
+<img src="./app/static/images/log in page.jpeg">
 
 ## Installation Requirements
 * Python3.6
