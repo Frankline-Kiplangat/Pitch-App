@@ -91,9 +91,11 @@ def post_comment(id):
     pitches = Pitch.query.filter_by(id=id).first()
 
     if form.validate_on_submit():
-        opinion = form.opinion.data
-        new_comment = Comments(opinion=opinion, user_id=current_user.id, pitches_id=pitches.id)
-        new_comment.save_comment()
+        comment = form.comment.data
+        new_comment = Comments(comment=comment, user_id=current_user.id, pitches_id=pitches.id)
+        # new_comment.save_comment()
+        db.session.add(new_comment)
+        db.session.commit()
         return redirect(url_for('.view_pitch', id=pitches.id))
 
     return render_template('post_comment.html', comment_form=form, title=title)

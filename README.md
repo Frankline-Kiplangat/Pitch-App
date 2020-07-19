@@ -14,7 +14,7 @@ As a user, you can can do the following with this App
 * Submit a pitch in any category.
 * View the different categories.
 # Screenshot
-![alt tag](/home/moringa/Desktop/my-projects/pitches-app/app/static/images/Log in page.jpeg)
+![alt text](/home/moringa/Desktop/my-projects/pitches-app/app/static/images/Log in page.jpeg)
 
 ## Installation Requirements
 * Python3.6
