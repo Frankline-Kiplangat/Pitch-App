@@ -1,12 +1,10 @@
  {% extends 'base.html' %}
  {% import 'macros.html' as macro%}
 
- {% block content %}
- <div>
 {% block content %}
 <div class="col-md-4">
 <h3>{{category.name}}</h3>
-<a class="btn btn-primary" href="/category/new-pitch/{{categories.id}}">Add a Pitch</a>
+<a class="btn btn-primary" href="/category/new-pitch/{{category.id}}">Add a Pitch</a>
 </div>
 
 {% if pitches %}
@@ -15,7 +13,7 @@
     </div>
     {% else %}
     <div>
-    <h4>No Pitch categories found</h4>
+    <h4>No Pitches found</h4>
     </div>
   {% endif %}
 

@@ -15,11 +15,11 @@ class PitchForm(FlaskForm):
     submit = SubmitField ('Submit')
 
 class CommentForm(FlaskForm):
-    comment = TextAreaField('Comment.',validators = [Required()])
+    comment = TextAreaField('Add a Comment',validators = [Required()])
     submit = SubmitField('Submit')  
     
 class CategoryForm(FlaskForm):
-     name = StringField ('Name', validators = [Required()])
+     name = StringField ('Category Name', validators = [Required()])
      submit = SubmitField('Add')
 
 

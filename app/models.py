@@ -77,7 +77,7 @@ class Comments(db.Model):
 #adding columns
 
     id = db.Column(db. Integer, primary_key=True)
-    opinion = db.Column(db.String(255))
+    comment = db.Column(db.String(255))
     time_posted = db.Column(db.DateTime, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
     pitches_id = db.Column(db.Integer, db.ForeignKey("pitches.id"))
@@ -90,7 +90,7 @@ class Comments(db.Model):
     @classmethod
     def get_comments(self, id):
         comment = Comments.query.order_by(
-            Comments.time_posted.desc()).filter_by(pitches_id=id).all()
+        Comments.time_posted.desc()).filter_by(pitches_id=id).all()
         return comment
 
 class User(UserMixin,db.Model):

@@ -22,7 +22,7 @@ def new_pitch(id):
     Function to fetch data 
     """
     form = PitchForm()
-    category = PitchCategory.query.filter_by(id).first()
+    category = PitchCategory.query.filter_by(id=id).first()
 
     if category is None:
         abort(404)
@@ -32,9 +32,8 @@ def new_pitch(id):
         new_pitch = Pitch(pitch = pitch, category_id = category.id, user_id= current_user.id)
         new_pitch.save_pitch()
         
-        db.session.add(new_pitch)
-        db.session.commiit()
-        return(url_for('.category', id= category.id))
+
+        return redirect(url_for('.category', id= category.id))
     
     return render_template('new_pitch.html', pitch_form = form, category = category)
 
@@ -61,14 +60,16 @@ def new_category():
         db.session.add(new_category)
         db.session.commit()
         return redirect(url_for('.index'))
+    print(form, 12345)
     title = 'New Category'   
-    return render_template('new_category.html', category_form = form, title = title)
+    return render_template('post_comment.html', comment_form = form, title = title)
+    
  
 @main.route('/view_pitch/<int:id>', methods = ['GET', 'POST'])
 @login_required
 def view_pitch(id):
     """
-    Function that returns a single pitch
+    Function that returns a single pitch with comments
     """
     print(id)
     pitches = Pitch.query.get(id)
@@ -83,24 +84,19 @@ def view_pitch(id):
 @login_required
 def post_comment(id):
     """
-    Function to add comments
+    Fuction to add comments
     """
     form = CommentForm()
-    Comment = Comments.query.get(id)
-    title = 'Post comment'
-    pitches = Pitch.query.filter_by (id).first()
-    
+    title = "Add a  comment"
+    pitches = Pitch.query.filter_by(id=id).first()
+
     if form.validate_on_submit():
         opinion = form.opinion.data
         new_comment = Comments(opinion=opinion, user_id=current_user.id, pitches_id=pitches.id)
         new_comment.save_comment()
-        
-        db.session.add(new_comment)
-        db.session.commit()
         return redirect(url_for('.view_pitch', id=pitches.id))
 
     return render_template('post_comment.html', comment_form=form, title=title)
-
 @main.route('/user/<uname>')
 def profile(uname):
     user = User.query.filter_by (username = uname).first()
