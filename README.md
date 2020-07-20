@@ -13,8 +13,7 @@ As a user, you can can do the following with this App
 * View the pitches you have created in your profile page.
 * Submit a pitch in any category.
 * View the different categories.
-# Screenshot
-![alt text](/home/moringa/Desktop/my-projects/pitches-app/app/static/images/Log in page.jpeg)
+
 
 ## Installation Requirements
 * Python3.6

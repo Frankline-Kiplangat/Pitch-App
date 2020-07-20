@@ -60,7 +60,6 @@ def new_category():
         db.session.add(new_category)
         db.session.commit()
         return redirect(url_for('.index'))
-    print(form, 12345)
     title = 'New Category'   
     return render_template('post_comment.html', comment_form = form, title = title)
     
@@ -93,9 +92,7 @@ def post_comment(id):
     if form.validate_on_submit():
         comment = form.comment.data
         new_comment = Comments(comment=comment, user_id=current_user.id, pitches_id=pitches.id)
-        # new_comment.save_comment()
-        db.session.add(new_comment)
-        db.session.commit()
+        new_comment.save_comment()
         return redirect(url_for('.view_pitch', id=pitches.id))
 
     return render_template('post_comment.html', comment_form=form, title=title)
