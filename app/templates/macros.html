@@ -22,6 +22,7 @@
 {% macro displaySpecificPitch(specific_pitch_list) %}
  {% for comment in specific_pitch_list %}
     <div class="col-md-12">
+    <br>
         <p>{{comment.comment}}</p>
          <p>{{comment.time_posted.strftime("%m/%d/%Y, %H:%M")}}</p>
     </div>

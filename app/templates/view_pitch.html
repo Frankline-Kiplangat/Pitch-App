@@ -7,19 +7,14 @@
 
 {% block content %}
 <div class="container-fluid">
- <p><a class="btn btn-primary" href="{{url_for('.new_pitch',id=pitches.category_id)}}">Post a Pitch</a></p>
  <div>
- <h3>{{ pitches.pitche }} </h3>
+ <h3 style="font-weight: bold;   width:200px;
+  padding: 5px;
+  border: 5px solid blue;
+  margin: 0;">{{ pitches.pitch }} </h3>
+         <h3 style="color: blue; font-weight: medium;">comments</h3>
+
  </div>
-
-<div class="col-md-4">
-        <button type="button" class="btn btn-default"><a  class="btn btn-round" href="{{url_for('.upvote',id=pitches.id)}}">Upvote<span class="glyphicon glyphicon-upload"></span></a></button>
-        <button type="button" class="btn btn-default"><a  class="btn btn-round" href="{{url_for('.downvote',id=pitches.id)}}">Downvote<span class="glyphicon glyphicon-download"></span></a></button>
-        
-</div>
-
-
-
          {% if comment %}
          {{ macro.displaySpecificPitch(comment)}}
          <br>
@@ -27,7 +22,14 @@
          <h3 class="text-center" style="blue">No comments found </h3>
          {% endif %}
         </div>
+<div class="col-md-4">
 
+        <button type="button" class="btn btn-default"><a  class="btn btn-round" href="{{url_for('.upvote',id=pitches.id)}}">Upvote<span class="glyphicon glyphicon-upload"></span></a></button>
+        <button type="button" class="btn btn-default"><a  class="btn btn-round" href="{{url_for('.downvote',id=pitches.id)}}">Downvote<span class="glyphicon glyphicon-download"></span></a></button>
+        <button type="button" class="btn btn-default"><a class="btn btn-primary" href="{{url_for('.post_comment',id=pitches.id)}}"> Add comments</a></button>
+        <button><a class="btn btn-primary" href="{{url_for('.new_pitch',id=pitches.category_id)}}">Post a Pitch</a></button>
+
+</div>
     </div>
   </div>
 

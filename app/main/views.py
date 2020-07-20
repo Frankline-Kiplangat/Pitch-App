@@ -156,9 +156,6 @@ def upvote(id):
 def downvote(id):
     pitch_id = Pitch.query.filter_by(id=id).first()
 
-    if pitch_id is None:
-         abort(404)
-
     new_vote = Votes(vote=int(2), user_id=current_user.id, pitches_id=pitch_id.id)
     new_vote.save_vote()
     return redirect(url_for('.view_pitch', id=id))

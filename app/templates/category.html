@@ -3,8 +3,9 @@
 
 {% block content %}
 <div class="col-md-4">
-<h3>{{category.name}}</h3>
 <a class="btn btn-primary" href="/category/new-pitch/{{category.id}}">Add a Pitch</a>
+
+<h3 style="color:blue; font-weight: bold;">{{category.name}}</h3>
 </div>
 
 {% if pitches %}
