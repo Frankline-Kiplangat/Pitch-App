@@ -169,4 +169,15 @@ def vote_count(id):
 
     return total_votes
 
-        
+@main.route('/like/<int:pitch_id>/<action>')
+@login_required
+def like_action(comment_id, action):
+    comment = Comment.query.filter_by(id=post_id).first_or_404()
+    if action == 'vote':
+        current_user.vote_comment(comment)
+        db.session.commit()
+    if action == 'downvote':
+        current_user.unlike_comment(comment)
+        db.session.commit()
+    return redirect(request.referrer)     
+
