@@ -38,6 +38,7 @@ def new_pitch(id):
     return render_template('new_pitch.html', pitch_form = form, category = category)
 
 @main.route ('/categories/<int:id>')
+@login_required
 def category(id):
     category = PitchCategory.query.get(id)
     if category is None:
@@ -49,6 +50,7 @@ def category(id):
 
 
 @main.route('/add/category', methods = ['GET', 'POST'])
+@login_required
 def new_category():
     form = CategoryForm()
     
@@ -97,6 +99,7 @@ def post_comment(id):
 
     return render_template('post_comment.html', comment_form=form, title=title)
 @main.route('/user/<uname>')
+@login_required
 def profile(uname):
     user = User.query.filter_by (username = uname).first()
     
@@ -161,6 +164,7 @@ def downvote(id):
     return redirect(url_for('.view_pitch', id=id))
 
 @main.route('/pitch/downvote/<int:id>')
+@login_required
 def vote_count(id):
 
     votes = Votes.query.filter_by(user_id=current_user.id).all()
